@@ -7,9 +7,8 @@ export default function Header() {
   const handleInscrever = () => navigate("/inscricao");
 
   return (
-    <header className="sticky top-0 w-full z-30 bg-black/50 backdrop-blur-md shadow-md">
+     <header className="sticky top-0 left-0 w-full z-50 bg-black/50 shadow-md">
       <div className="flex items-center justify-between px-6 py-4">
-
         <div className="flex items-center gap-4">
           <img src={Logo} alt="Logo" className="h-10 w-auto" />
           <button
