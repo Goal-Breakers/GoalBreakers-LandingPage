@@ -3,7 +3,6 @@
 }
 
 .hero {
-  min-height: 90dvh;
   background-image: url("../assets/background-GolBreakers.png");
   background-size: cover;
   background-position: center;
