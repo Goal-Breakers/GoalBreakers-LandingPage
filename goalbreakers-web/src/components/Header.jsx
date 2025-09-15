@@ -9,45 +9,51 @@ export default function Header() {
   const handleInscrever = () => navigate("/inscricao");
 
   return (
-    <header className="sticky top-0 left-0 w-full z-50 bg-black/50 shadow-md backdrop-blur-sm">
+    <header className="absolute top-0 left-0 w-full z-50">
       <div className="flex items-center justify-between px-6 py-4">
         <div className="flex items-center gap-4">
           <img src={Logo} alt="Logo" className="h-10 w-auto" />
           <button
             onClick={handleInscrever}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full transition"
+            className="bg-purple-600 hover:bg-purple-700 text-white
+             px-6 py-1 rounded-full font-bold
+             transition duration-300 ease-in-out
+             focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75
+             [box-shadow:0_0_10px_2px_rgba(168,85,247,0.5)]
+             hover:[box-shadow:0_0_15px_4px_rgba(168,85,247,0.7)]"
           >
             INSCREVA-SE
           </button>
         </div>
+        <div className="flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8 font-semibold text-white">
+            <Link
+              to="/"
+              className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
+            >
+              HOME
+            </Link>
+            <Link
+              to="/copinha"
+              className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
+            >
+              COPA
+            </Link>
+            <Link
+              to="/banco-talentos"
+              className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
+            >
+              BANCO DE TALENTOS
+            </Link>
+          </nav>
 
-        <nav className="hidden md:flex items-center gap-8 font-semibold text-white">
-          <Link
-            to="/"
-            className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
+          <button
+            className=" text-3xl text-white"
+            onClick={() => setIsOpen(!isOpen)}
           >
-            HOME
-          </Link>
-          <Link
-            to="/copinha"
-            className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
-          >
-            COPA
-          </Link>
-          <Link
-            to="/banco-talentos"
-            className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
-          >
-            BANCO DE TALENTOS
-          </Link>
-        </nav>
-
-        <button
-          className="md:hidden text-3xl text-white"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? "✖" : "☰"}
-        </button>
+            {isOpen ? "✖" : "☰"}
+          </button>
+        </div>
       </div>
 
       {/* Menu mobile */}
