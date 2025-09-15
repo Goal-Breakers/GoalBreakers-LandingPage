@@ -8,6 +8,7 @@ import Games from "../pages/Games";
 import Results from "../pages/Results";
 import Login from "../pages/Login";
 import CopinhaLayout from "../pages/CopinhaLayout";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -25,7 +26,7 @@ export const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Copinha/>
+            element: <ProtectedRoute> <Copinha/> </ProtectedRoute>
           },
           {
             path: "times",

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import Logo from "../assets/logo.png";
 
 export default function Header() {
@@ -8,6 +9,8 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [copinhaOpen, setCopinhaOpen] = useState(false);
   const copinhaRef = useRef();
+
+  const { user, logout } = useAuth();
 
   // Fecha o dropdown se clicar fora
   useEffect(() => {
@@ -20,7 +23,18 @@ export default function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleInscrever = () => navigate("/inscricao");
+  const handleInscrever = () => {
+    if (user) {
+      navigate("/copinha");
+    } else {
+      navigate("/login");
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <header className="absolute top-0 left-0 w-full z-50">
@@ -120,16 +134,28 @@ export default function Header() {
             >
               SOBRE NÓS
             </Link>
-            <Link
-              to="/banco-talentos"
-              className={`hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
-                location.pathname === "/login"
-                  ? "text-purple-500 after:w-full"
-                  : "hover:after:w-full"
-              }`}
-            >
-              LOGIN
-            </Link>
+            {user ? (
+              <>
+                <span className="text-white">Olá, {user.username}</span>
+                <button
+                  onClick={handleLogout}
+                  className="hover:text-purple-400 font-semibold"
+                >
+                  LOGOUT
+                </button>
+              </>
+            ) : (
+              <Link
+                to="/login"
+                className={`hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
+                  location.pathname === "/login"
+                    ? "text-purple-500 after:w-full"
+                    : "hover:after:w-full"
+                }`}
+              >
+                LOGIN
+              </Link>
+            )}
           </nav>
           <button
             className=" text-3xl text-white"
@@ -216,13 +242,25 @@ export default function Header() {
           >
             SOBRE NÓS
           </Link>
-          <Link
-            to="/login"
-            className="block hover:text-purple-400"
-            onClick={() => setIsOpen(false)}
-          >
-            LOGIN
-          </Link>
+          {user ? (
+            <>
+              <span className="text-white">Olá, {user.username}</span>
+              <button
+                onClick={handleLogout}
+                className="block hover:text-purple-400 font-semibold"
+              >
+                LOGOUT
+              </button>
+            </>
+          ) : (
+            <Link
+              to="/login"
+              className="block hover:text-purple-400"
+              onClick={() => setIsOpen(false)}
+            >
+              LOGIN
+            </Link>
+          )}
         </nav>
       )}
     </header>
