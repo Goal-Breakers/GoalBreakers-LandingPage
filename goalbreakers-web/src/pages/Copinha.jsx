@@ -1,11 +1,9 @@
 import { useState } from "react";
 import CopinhaCard from "../components/CopinhaCard";
+import { useChampionship } from "../contexts/ChampionshipContext";
 
 export default function FormularioCopinha() {
-  const [times, setTimes] = useState(() => {
-    const saved = localStorage.getItem("timesCampeonato");
-    return saved ? JSON.parse(saved) : [];
-  });
+  const { teams, addTeam } = useChampionship();
 
   const [representante, setRepresentante] = useState({
     nome: "",
@@ -67,7 +65,7 @@ export default function FormularioCopinha() {
       }
     }
 
-    if (times.length >= 8) {
+    if (teams.length >= 8) {
       alert("Número máximo de times atingido!");
       return;
     }
@@ -78,14 +76,12 @@ export default function FormularioCopinha() {
       jogadores,
     };
 
-    const novosTimes = [...times, novoTime];
-    setTimes(novosTimes);
-    localStorage.setItem("timesCampeonato", JSON.stringify(novosTimes));
+    addTeam(novoTime);
     alert("Time inscrito com sucesso!");
 
     // Resetar formulário
     setRepresentante({ nome: "", numero: "", email: "", nascimento: "" });
-    setJogadores(Array(7).fill({ nome: "", nascimento: "", posicao: "Fixo" }));
+    setJogadores(Array.from({ length: 7 }, () => ({ nome: "", nascimento: "", posicao: "Fixo" })));
   };
 
   return (
@@ -231,10 +227,10 @@ export default function FormularioCopinha() {
         </form>
 
         <h3 className="mt-8 text-purple-300 font-bold">
-          Times Inscritos ({times.length}/8)
+          Times Inscritos ({teams.length}/8)
         </h3>
         <ul className="list-disc list-inside mt-2">
-          {times.map((t, i) => (
+          {teams.map((t, i) => (
             <li key={i}>
               {t.nome} - {t.jogadores.length} jogadoras
             </li>
