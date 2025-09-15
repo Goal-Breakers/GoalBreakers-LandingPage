@@ -5,11 +5,14 @@ import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './routes/AppRoutes'
 import { ChampionshipProvider } from './contexts/ChampionshipContext'
+import { AuthProvider } from './contexts/AuthContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ChampionshipProvider>
-      <RouterProvider router={router}/>
-    </ChampionshipProvider>
+    <AuthProvider>
+      <ChampionshipProvider>
+        <RouterProvider router={router}/>
+      </ChampionshipProvider>
+    </AuthProvider>
   </StrictMode>,
 )

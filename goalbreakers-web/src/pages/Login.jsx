@@ -1,0 +1,59 @@
+import { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+
+export default function Login() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const success = login(username, password);
+    if (success) {
+      setError('');
+      navigate('/');
+    } else {
+      setError('Invalid username or password');
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-black text-white">
+      <form onSubmit={handleSubmit} className="bg-black/70 p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 className="text-3xl font-bold mb-6 text-center">Login</h2>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
+        <div className="mb-4">
+          <label htmlFor="username" className="block mb-1 font-semibold">Username</label>
+          <input
+            id="username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="w-full px-4 py-2 rounded bg-gray-800 border border-purple-500 focus:ring-2 focus:ring-purple-400"
+            required
+          />
+        </div>
+        <div className="mb-6">
+          <label htmlFor="password" className="block mb-1 font-semibold">Password</label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full px-4 py-2 rounded bg-gray-800 border border-purple-500 focus:ring-2 focus:ring-purple-400"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          className="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded font-semibold transition"
+        >
+          Log In
+        </button>
+      </form>
+    </div>
+  );
+}

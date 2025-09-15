@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useChampionship } from '../contexts/ChampionshipContext';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function Teams() {
   const { teams, updateTeam, deleteTeam } = useChampionship();
+  const { isAdmin } = useAuth();
   const [editingId, setEditingId] = useState(null);
   const [editData, setEditData] = useState({});
 
@@ -85,18 +87,22 @@ export default function Teams() {
                   <p className="text-gray-300 mb-2">Representante: {team.representante?.nome} ({team.representante?.email})</p>
                   <p className="text-gray-300 mb-4">Jogadoras: {team.jogadores?.length || 0}</p>
                   <div className="flex gap-4">
-                    <button
-                      onClick={() => startEdit(team)}
-                      className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full font-semibold transition text-white"
-                    >
-                      Editar
-                    </button>
-                    <button
-                      onClick={() => deleteTeam(team.id)}
-                      className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-full font-semibold transition text-white"
-                    >
-                      Deletar
-                    </button>
+                    {isAdmin() && (
+                      <>
+                        <button
+                          onClick={() => startEdit(team)}
+                          className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full font-semibold transition text-white"
+                        >
+                          Editar
+                        </button>
+                        <button
+                          onClick={() => deleteTeam(team.id)}
+                          className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-full font-semibold transition text-white"
+                        >
+                          Deletar
+                        </button>
+                      </>
+                    )}
                   </div>
                 </div>
               )}

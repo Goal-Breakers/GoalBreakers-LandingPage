@@ -1,12 +1,19 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.png";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Header() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logout } = useAuth();
 
   const handleInscrever = () => navigate("/inscricao");
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <header className="sticky top-0 left-0 w-full z-50 bg-black/50 shadow-md backdrop-blur-sm">
@@ -58,6 +65,21 @@ export default function Header() {
           >
             BANCO DE TALENTOS
           </Link>
+          {user ? (
+            <div className="flex items-center gap-4">
+              <span>Olá, {user.username}</span>
+              <button onClick={handleLogout} className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full transition">
+                LOGOUT
+              </button>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full transition"
+            >
+              LOGIN
+            </Link>
+          )}
         </nav>
 
         <button
@@ -113,6 +135,22 @@ export default function Header() {
           >
             BANCO DE TALENTOS
           </Link>
+          {user ? (
+            <div className="space-y-2">
+              <span className="block">Welcome, {user.username}</span>
+              <button onClick={() => { handleLogout(); setIsOpen(false); }} className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full transition">
+                LOGOUT
+              </button>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full transition text-center"
+              onClick={() => setIsOpen(false)}
+            >
+              LOGIN
+            </Link>
+          )}
         </nav>
       )}
     </header>
