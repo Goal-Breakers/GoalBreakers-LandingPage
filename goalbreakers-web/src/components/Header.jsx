@@ -35,6 +35,24 @@ export default function Header() {
             COPA
           </Link>
           <Link
+            to="/teams"
+            className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
+          >
+            TIMES
+          </Link>
+          <Link
+            to="/games"
+            className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
+          >
+            JOGOS
+          </Link>
+          <Link
+            to="/results"
+            className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
+          >
+            RESULTADOS
+          </Link>
+          <Link
             to="/banco-talentos"
             className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
           >
@@ -61,11 +79,32 @@ export default function Header() {
             HOME
           </Link>
           <Link
-            to="/copa"
+            to="/copinha"
             className="block hover:text-purple-400"
             onClick={() => setIsOpen(false)}
           >
             COPA
+          </Link>
+          <Link
+            to="/teams"
+            className="block hover:text-purple-400"
+            onClick={() => setIsOpen(false)}
+          >
+            TIMES
+          </Link>
+          <Link
+            to="/games"
+            className="block hover:text-purple-400"
+            onClick={() => setIsOpen(false)}
+          >
+            JOGOS
+          </Link>
+          <Link
+            to="/results"
+            className="block hover:text-purple-400"
+            onClick={() => setIsOpen(false)}
+          >
+            RESULTADOS
           </Link>
           <Link
             to="/banco-talentos"
