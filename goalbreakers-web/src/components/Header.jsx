@@ -75,21 +75,21 @@ export default function Header() {
                     Inscrição
                   </Link>
                   <Link
-                    to="/times"
+                    to="/copinha/times"
                     className="block px-4 py-2 hover:bg-purple-700 hover:text-white"
                     onClick={() => setCopinhaOpen(false)}
                   >
                     Times
                   </Link>
                   <Link
-                    to="/jogos"
+                    to="/copinha/jogos"
                     className="block px-4 py-2 hover:bg-purple-700 hover:text-white"
                     onClick={() => setCopinhaOpen(false)}
                   >
                     Jogos
                   </Link>
                   <Link
-                    to="/resultados"
+                    to="/copinha/resultados"
                     className="block px-4 py-2 hover:bg-purple-700 hover:text-white"
                     onClick={() => setCopinhaOpen(false)}
                   >
