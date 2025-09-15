@@ -8,21 +8,21 @@ export default function Header() {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [copinhaOpen, setCopinhaOpen] = useState(false);
-  const copinhaRef = useRef();
+  //const copinhaRef = useRef();
   const [isCopaDropdownOpen, setIsCopaDropdownOpen] = useState(false);
 
   const { user, logout } = useAuth();
 
   // Fecha o dropdown se clicar fora
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (copinhaRef.current && !copinhaRef.current.contains(event.target)) {
-        setCopinhaOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  // useEffect(() => {
+  //   function handleClickOutside(event) {
+  //     if (copinhaRef.current && !copinhaRef.current.contains(event.target)) {
+  //       setCopinhaOpen(false);
+  //     }
+  //   }
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => document.removeEventListener("mousedown", handleClickOutside);
+  // }, []);
 
   const handleInscrever = () => {
     if (user) {
@@ -103,21 +103,21 @@ export default function Header() {
               {isCopaDropdownOpen && (
                 <div className="absolute top-full mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-2 z-20">
                   <Link
-                    to="/jogos"
+                    to="/copinha/jogos"
                     className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover: text-white"
                     onClick={() => setIsCopaDropdownOpen(false)}
                   >
                     JOGOS
                   </Link>
                   <Link
-                    to="/times"
+                    to="/copinha/times"
                     className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover: text-white"
                     onClick={() => setIsCopaDropdownOpen(false)}
                   >
                     TIMES
                   </Link>
                   <Link
-                    to="/resultados"
+                    to="copinha/resultados"
                     className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover: text-white"
                     onClick={() => setIsCopaDropdownOpen(false)}
                   >
