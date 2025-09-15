@@ -6,6 +6,7 @@ export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [isCopaDropdownOpen, setIsCopaDropdownOpen] = useState(false);
 
   const handleInscrever = () => navigate("/inscricao");
 
@@ -41,16 +42,62 @@ export default function Header() {
             >
               HOME
             </Link>
-            <Link
-              to="/copinha"
-              className={`hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
-                location.pathname === "/copinha"
-                  ? "text-purple-500 after:w-full"
-                  : "hover:after:w-full"
-              }`}
-            >
-              COPA
-            </Link>
+
+            {/*MENU DROPDOWN*/}
+            <div className="relative">
+              <button
+                onClick={() => setIsCopaDropdownOpen(!isCopaDropdownOpen)}
+                className={`flex items-center gap-1 hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
+                  location.pathname.startsWith("/copa") ||
+                  location.pathname.startsWith("/jogos") ||
+                  location.pathname.startsWith("/resultados") ||
+                  location.pathname.startsWith("/times")
+                    ? "text-purple-500 after:w-full"
+                    : "hover:after:w-full"
+                }`}
+              >
+                COPA
+                <svg
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    isCopaDropdownOpen ? "rotate-180" : ""
+                  }`}
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+
+              {isCopaDropdownOpen && (
+                <div className="absolute top-full mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-2 z-20">
+                  <Link
+                    to="/jogos"
+                    className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover: text-white"
+                    onClick={() => setIsCopaDropdownOpen(false)}
+                  >
+                    JOGOS
+                  </Link>
+                  <Link
+                    to="/times"
+                    className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover: text-white"
+                    onClick={() => setIsCopaDropdownOpen(false)}
+                  >
+                    TIMES
+                  </Link>
+                  <Link
+                    to="/resultados"
+                    className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover: text-white"
+                    onClick={() => setIsCopaDropdownOpen(false)}
+                  >
+                    RESULTADOS
+                  </Link>
+                </div>
+              )}
+            </div>
             <Link
               to="/banco-talentos"
               className={`hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
@@ -60,6 +107,16 @@ export default function Header() {
               }`}
             >
               BANCO DE TALENTOS
+            </Link>
+            <Link
+              to="/banco-talentos"
+              className={`hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
+                location.pathname === "/sobreNos"
+                  ? "text-purple-500 after:w-full"
+                  : "hover:after:w-full"
+              }`}
+            >
+              SOBRE NÓS
             </Link>
             <Link
               to="/banco-talentos"
@@ -104,6 +161,13 @@ export default function Header() {
             onClick={() => setIsOpen(false)}
           >
             BANCO DE TALENTOS
+          </Link>
+          <Link
+            to="/sobreNos"
+            className="block hover:text-purple-400"
+            onClick={() => setIsOpen(false)}
+          >
+            SOBRE NÓS
           </Link>
           <Link
             to="/login"
