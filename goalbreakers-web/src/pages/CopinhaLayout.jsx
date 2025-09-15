@@ -6,9 +6,7 @@ import { Outlet } from "react-router-dom";
 function CopinhaLayout() {
   return (
     <div>
-      <Header></Header>
       <Outlet />
-      <Footer />
     </div>
   );
 }
