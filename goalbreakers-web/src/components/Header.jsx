@@ -27,7 +27,9 @@ export default function Header() {
       <div className="flex items-center justify-between px-6 py-4">
         {/* Lado esquerdo: Logo e Botão */}
         <div className="flex items-center gap-4">
+          <Link to="/">
           <img src={Logo} alt="Logo" className="h-10 w-auto" />
+          </Link>
           <button
             onClick={handleInscrever}
             className="bg-purple-600 hover:bg-purple-700 text-white
