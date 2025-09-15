@@ -1,192 +1,119 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Logo from "../assets/logo.png";
-import { useAuth } from "../contexts/AuthContext";
 
 export default function Header() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  const { user, logout } = useAuth();
 
   const handleInscrever = () => navigate("/inscricao");
-
-  const handleLogout = () => {
-    logout();
-    navigate("/");
-  };
 
   return (
     <header className="absolute top-0 left-0 w-full z-50">
       <div className="flex items-center justify-between px-6 py-4">
+        {/* Lado esquerdo: Logo e Botão */}
         <div className="flex items-center gap-4">
           <img src={Logo} alt="Logo" className="h-10 w-auto" />
           <button
             onClick={handleInscrever}
             className="bg-purple-600 hover:bg-purple-700 text-white
-             px-6 py-1 rounded-full font-bold
-             transition duration-300 ease-in-out
-             focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75
-             [box-shadow:0_0_10px_2px_rgba(168,85,247,0.5)]
-             hover:[box-shadow:0_0_15px_4px_rgba(168,85,247,0.7)]"
+                       px-6 py-1 rounded-full font-bold
+                       transition duration-300 ease-in-out
+                       focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75
+                       [box-shadow:0_0_10px_2px_rgba(168,85,247,0.5)]
+                       hover:[box-shadow:0_0_15px_4px_rgba(168,85,247,0.7)]"
           >
             INSCREVA-SE
           </button>
         </div>
+
+        {/* Lado direito: Links de Navegação e Ícone do Menu */}
         <div className="flex items-center gap-8">
           <nav className="hidden md:flex items-center gap-8 font-semibold text-white">
             <Link
               to="/"
-              className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
+              className={`hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
+                location.pathname === "/"
+                  ? "text-purple-500 after:w-full"
+                  : "hover:after:w-full"
+              }`}
             >
               HOME
             </Link>
             <Link
               to="/copinha"
-              className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
+              className={`hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
+                location.pathname === "/copinha"
+                  ? "text-purple-500 after:w-full"
+                  : "hover:after:w-full"
+              }`}
             >
               COPA
             </Link>
             <Link
               to="/banco-talentos"
-              className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
+              className={`hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
+                location.pathname === "/banco-talentos"
+                  ? "text-purple-500 after:w-full"
+                  : "hover:after:w-full"
+              }`}
             >
               BANCO DE TALENTOS
             </Link>
-          </nav>
-
-          <button
-            className=" text-3xl text-white"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            HOME
-          </button>
-          <Link
-            to="/copinha"
-            className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
-          >
-            COPA
-          </Link>
-          <Link
-            to="/times"
-            className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
-          >
-            TIMES
-          </Link>
-          <Link
-            to="/jogos"
-            className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
-          >
-            JOGOS
-          </Link>
-          <Link
-            to="/resultados"
-            className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
-          >
-            RESULTADOS
-          </Link>
-          <Link
-            to="/banco-talentos"
-            className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
-          >
-            BANCO DE TALENTOS
-          </Link>
-          {user ? (
-            <div className="flex items-center gap-4">
-              <span>Olá, {user.username}</span>
-              <button
-                onClick={handleLogout}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full transition"
-              >
-                LOGOUT
-              </button>
-            </div>
-          ) : (
             <Link
-              to="/login"
-              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full transition"
+              to="/banco-talentos"
+              className={`hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
+                location.pathname === "/login"
+                  ? "text-purple-500 after:w-full"
+                  : "hover:after:w-full"
+              }`}
             >
               LOGIN
             </Link>
-          )}
-
+          </nav>
           <button
-            className="md:hidden text-3xl text-white"
+            className=" text-3xl text-white"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? "✖" : "☰"}
           </button>
         </div>
-
-        {/* Menu mobile */}
-        {isOpen && (
-          <nav className="md:hidden bg-black/90 text-white px-6 py-6 space-y-4 font-semibold">
-            <Link
-              to="/"
-              className="block hover:text-purple-400"
-              onClick={() => setIsOpen(false)}
-            >
-              HOME
-            </Link>
-            <Link
-              to="/copinha"
-              className="block hover:text-purple-400"
-              onClick={() => setIsOpen(false)}
-            >
-              COPA
-            </Link>
-            <Link
-              to="/teams"
-              className="block hover:text-purple-400"
-              onClick={() => setIsOpen(false)}
-            >
-              TIMES
-            </Link>
-            <Link
-              to="/games"
-              className="block hover:text-purple-400"
-              onClick={() => setIsOpen(false)}
-            >
-              JOGOS
-            </Link>
-            <Link
-              to="/results"
-              className="block hover:text-purple-400"
-              onClick={() => setIsOpen(false)}
-            >
-              RESULTADOS
-            </Link>
-            <Link
-              to="/banco-talentos"
-              className="block hover:text-purple-400"
-              onClick={() => setIsOpen(false)}
-            >
-              BANCO DE TALENTOS
-            </Link>
-            {user ? (
-              <div className="space-y-2">
-                <span className="block">Welcome, {user.username}</span>
-                <button
-                  onClick={() => {
-                    handleLogout();
-                    setIsOpen(false);
-                  }}
-                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full transition"
-                >
-                  LOGOUT
-                </button>
-              </div>
-            ) : (
-              <Link
-                to="/login"
-                className="block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full transition text-center"
-                onClick={() => setIsOpen(false)}
-              >
-                LOGIN
-              </Link>
-            )}
-          </nav>
-        )}
       </div>
+
+      {/* Menu mobile */}
+      {isOpen && (
+        <nav className="md:hidden bg-black/90 text-white px-6 py-6 space-y-4 font-semibold">
+          <Link
+            to="/"
+            className="block hover:text-purple-400"
+            onClick={() => setIsOpen(false)}
+          >
+            HOME
+          </Link>
+          <Link
+            to="/copa"
+            className="block hover:text-purple-400"
+            onClick={() => setIsOpen(false)}
+          >
+            COPA
+          </Link>
+          <Link
+            to="/banco-talentos"
+            className="block hover:text-purple-400"
+            onClick={() => setIsOpen(false)}
+          >
+            BANCO DE TALENTOS
+          </Link>
+          <Link
+            to="/login"
+            className="block hover:text-purple-400"
+            onClick={() => setIsOpen(false)}
+          >
+            LOGIN
+          </Link>
+        </nav>
+      )}
     </header>
   );
 }
