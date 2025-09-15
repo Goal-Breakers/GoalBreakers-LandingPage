@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Logo from "../assets/logo.png";
 
@@ -6,6 +6,19 @@ export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [copinhaOpen, setCopinhaOpen] = useState(false);
+  const copinhaRef = useRef();
+
+  // Fecha o dropdown se clicar fora
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (copinhaRef.current && !copinhaRef.current.contains(event.target)) {
+        setCopinhaOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleInscrever = () => navigate("/inscricao");
 
@@ -41,16 +54,50 @@ export default function Header() {
             >
               HOME
             </Link>
-            <Link
-              to="/copinha"
-              className={`hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
-                location.pathname === "/copinha"
-                  ? "text-purple-500 after:w-full"
-                  : "hover:after:w-full"
-              }`}
-            >
-              COPA
-            </Link>
+            <div className="relative" ref={copinhaRef}>
+              <button
+                onClick={() => setCopinhaOpen((open) => !open)}
+                className={`hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
+                  location.pathname === "/copinha"
+                    ? "text-purple-500 after:w-full"
+                    : "hover:after:w-full"
+                }`}
+              >
+                COPA
+              </button>
+              {copinhaOpen && (
+                <div className="absolute left-0 mt-2 w-48 bg-black/90 rounded-lg shadow-lg py-2 z-50">
+                  <Link
+                    to="/copinha"
+                    className="block px-4 py-2 hover:bg-purple-700 hover:text-white"
+                    onClick={() => setCopinhaOpen(false)}
+                  >
+                    Inscrição
+                  </Link>
+                  <Link
+                    to="/times"
+                    className="block px-4 py-2 hover:bg-purple-700 hover:text-white"
+                    onClick={() => setCopinhaOpen(false)}
+                  >
+                    Times
+                  </Link>
+                  <Link
+                    to="/jogos"
+                    className="block px-4 py-2 hover:bg-purple-700 hover:text-white"
+                    onClick={() => setCopinhaOpen(false)}
+                  >
+                    Jogos
+                  </Link>
+                  <Link
+                    to="/resultados"
+                    className="block px-4 py-2 hover:bg-purple-700 hover:text-white"
+                    onClick={() => setCopinhaOpen(false)}
+                  >
+                    Resultados
+                  </Link>
+                </div>
+              )}
+            </div>
             <Link
               to="/banco-talentos"
               className={`hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
@@ -62,7 +109,7 @@ export default function Header() {
               BANCO DE TALENTOS
             </Link>
             <Link
-              to="/banco-talentos"
+              to="/login"
               className={`hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
                 location.pathname === "/login"
                   ? "text-purple-500 after:w-full"
@@ -91,13 +138,58 @@ export default function Header() {
           >
             HOME
           </Link>
-          <Link
-            to="/copa"
-            className="block hover:text-purple-400"
-            onClick={() => setIsOpen(false)}
-          >
-            COPA
-          </Link>
+          <div>
+            <button
+              onClick={() => setCopinhaOpen((open) => !open)}
+              className="block w-full text-left hover:text-purple-400"
+            >
+              COPA
+            </button>
+            {copinhaOpen && (
+              <div className="pl-4 space-y-2">
+                <Link
+                  to="/copinha"
+                  className="block hover:text-purple-400"
+                  onClick={() => {
+                    setCopinhaOpen(false);
+                    setIsOpen(false);
+                  }}
+                >
+                  Inscrição
+                </Link>
+                <Link
+                  to="/times"
+                  className="block hover:text-purple-400"
+                  onClick={() => {
+                    setCopinhaOpen(false);
+                    setIsOpen(false);
+                  }}
+                >
+                  Times
+                </Link>
+                <Link
+                  to="/jogos"
+                  className="block hover:text-purple-400"
+                  onClick={() => {
+                    setCopinhaOpen(false);
+                    setIsOpen(false);
+                  }}
+                >
+                  Jogos
+                </Link>
+                <Link
+                  to="/resultados"
+                  className="block hover:text-purple-400"
+                  onClick={() => {
+                    setCopinhaOpen(false);
+                    setIsOpen(false);
+                  }}
+                >
+                  Resultados
+                </Link>
+              </div>
+            )}
+          </div>
           <Link
             to="/banco-talentos"
             className="block hover:text-purple-400"
