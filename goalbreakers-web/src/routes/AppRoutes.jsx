@@ -7,6 +7,7 @@ import Teams from "../pages/Teams";
 import Games from "../pages/Games";
 import Results from "../pages/Results";
 import Login from "../pages/Login";
+import CopinhaLayout from "../pages/CopinhaLayout";
 
 export const router = createBrowserRouter([
   {
@@ -20,19 +21,25 @@ export const router = createBrowserRouter([
       },
       {
         path: "copinha",
-        element: <Copinha />,
-      },
-      {
-        path: "times",
-        element: <Teams />,
-      },
-      {
-        path: "jogos",
-        element: <Games />,
-      },
-      {
-        path: "resultados",
-        element: <Results />,
+        element: <CopinhaLayout />,
+        children: [
+          {
+            index: true,
+            element: <Copinha/>
+          },
+          {
+            path: "times",
+            element: <Teams />,
+          },
+          {
+            path: "jogos",
+            element: <Games />,
+          },
+          {
+            path: "resultados",
+            element: <Results />,
+          }
+        ]
       },
       {
         path: "login",
