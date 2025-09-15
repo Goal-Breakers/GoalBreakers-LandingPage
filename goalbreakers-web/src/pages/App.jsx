@@ -1,16 +1,14 @@
 import "../css/App.css";
 import Header from "../components/Header";
-import Hero from "../components/Hero";
-import Features from "../components/Features";
 import Footer from "../components/Footer";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <div>
       <Header></Header>
-      <Hero />
-      <Features />
-      <Footer/>
+      <Outlet />
+      <Footer />
     </div>
   );
 }
