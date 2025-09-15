@@ -42,19 +42,19 @@ export default function Header() {
             COPA
           </Link>
           <Link
-            to="/teams"
+            to="/times"
             className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
           >
             TIMES
           </Link>
           <Link
-            to="/games"
+            to="/jogos"
             className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
           >
             JOGOS
           </Link>
           <Link
-            to="/results"
+            to="/resultados"
             className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
           >
             RESULTADOS

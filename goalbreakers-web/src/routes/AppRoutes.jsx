@@ -7,18 +7,7 @@ import Teams from "../pages/Teams";
 import Games from "../pages/Games";
 import Results from "../pages/Results";
 import Login from "../pages/Login";
-import { useAuth } from "../contexts/AuthContext";
-
-function ProtectedRoute({ children }) {
-  const { user, isAdmin } = useAuth();
-  if (!user) {
-    return <Navigate to="/login" replace />;
-  }
-  if (!isAdmin()) {
-    return <Navigate to="/" replace />;
-  }
-  return children;
-}
+import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
     {
@@ -35,15 +24,15 @@ export const router = createBrowserRouter([
                 element: <Copinha/>
             },
             {
-                path: "teams",
+                path: "times",
                 element: <Teams/>
             },
             {
-                path: "games",
+                path: "jogos",
                 element: <Games/>
             },
             {
-                path: "results",
+                path: "resultados",
                 element: <Results/>
             },
             {
