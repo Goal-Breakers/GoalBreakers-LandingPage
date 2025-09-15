@@ -29,7 +29,7 @@ export default function Header() {
             HOME
           </Link>
           <Link
-            to="/copa"
+            to="/copinha"
             className="hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all hover:after:w-full"
           >
             COPA

@@ -91,10 +91,16 @@ export default function FormularioCopinha() {
   return (
     <>
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-black flex flex-col items-center px-6 py-12 text-white">
-      <CopinhaCard />
-        <h1 className="text-4xl font-extrabold text-purple-300 mb-2 uppercase text-center"           id="formularioCopinha">
-          Formulário Copinha
+        <h1 className="text-4xl font-extrabold text-purple-300 mb-2 uppercase text-center">
+          Copa Passa a Bola
         </h1>
+        <CopinhaCard />
+        <h2
+          className="text-4xl font-extrabold text-purple-300 mb-2 uppercase text-center"
+          id="formularioCopinha"
+        >
+          Formulário Copinha
+        </h2>
         <p className="text-gray-300 mb-8 text-center">
           Formulário de inscrição
         </p>
