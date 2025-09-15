@@ -9,6 +9,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [copinhaOpen, setCopinhaOpen] = useState(false);
   const copinhaRef = useRef();
+  const [isCopaDropdownOpen, setIsCopaDropdownOpen] = useState(false);
 
   const { user, logout } = useAuth();
 
@@ -42,7 +43,7 @@ export default function Header() {
         {/* Lado esquerdo: Logo e Botão */}
         <div className="flex items-center gap-4">
           <Link to="/">
-          <img src={Logo} alt="Logo" className="h-10 w-auto" />
+            <img src={Logo} alt="Logo" className="h-10 w-auto" />
           </Link>
           <button
             onClick={handleInscrever}
@@ -70,46 +71,57 @@ export default function Header() {
             >
               HOME
             </Link>
-            <div className="relative" ref={copinhaRef}>
+            {/*MENU DROPDOWN*/}
+            <div className="relative">
               <button
-                onClick={() => setCopinhaOpen((open) => !open)}
-                className={`hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
-                  location.pathname === "/copinha"
+                onClick={() => setIsCopaDropdownOpen(!isCopaDropdownOpen)}
+                className={`flex items-center gap-1 hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
+                  location.pathname.startsWith("/copa") ||
+                  location.pathname.startsWith("/jogos") ||
+                  location.pathname.startsWith("/resultados") ||
+                  location.pathname.startsWith("/times")
                     ? "text-purple-500 after:w-full"
                     : "hover:after:w-full"
                 }`}
               >
                 COPA
+                <svg
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    isCopaDropdownOpen ? "rotate-180" : ""
+                  }`}
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
               </button>
-              {copinhaOpen && (
-                <div className="absolute left-0 mt-2 w-48 bg-black/90 rounded-lg shadow-lg py-2 z-50">
+
+              {isCopaDropdownOpen && (
+                <div className="absolute top-full mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-2 z-20">
                   <Link
-                    to="/copinha"
-                    className="block px-4 py-2 hover:bg-purple-700 hover:text-white"
-                    onClick={() => setCopinhaOpen(false)}
+                    to="/jogos"
+                    className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover: text-white"
+                    onClick={() => setIsCopaDropdownOpen(false)}
                   >
-                    Inscrição
+                    JOGOS
                   </Link>
                   <Link
-                    to="/copinha/times"
-                    className="block px-4 py-2 hover:bg-purple-700 hover:text-white"
-                    onClick={() => setCopinhaOpen(false)}
+                    to="/times"
+                    className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover: text-white"
+                    onClick={() => setIsCopaDropdownOpen(false)}
                   >
-                    Times
+                    TIMES
                   </Link>
                   <Link
-                    to="/copinha/jogos"
-                    className="block px-4 py-2 hover:bg-purple-700 hover:text-white"
-                    onClick={() => setCopinhaOpen(false)}
+                    to="/resultados"
+                    className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover: text-white"
+                    onClick={() => setIsCopaDropdownOpen(false)}
                   >
-                    Jogos
-                  </Link>
-                  <Link
-                    to="/copinha/resultados"
-                    className="block px-4 py-2 hover:bg-purple-700 hover:text-white"
-                    onClick={() => setCopinhaOpen(false)}
-                  >
-                    Resultados
+                    RESULTADOS
                   </Link>
                 </div>
               )}
