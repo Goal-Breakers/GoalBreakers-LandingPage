@@ -1,4 +1,4 @@
-import Logo from "../assets/logo.png";
+import Logo from "../assets/logoBola.png";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
@@ -9,7 +9,7 @@ export default function Footer() {
         <div>
           <div className="flex items-center gap-2 mb-4">
             <div className=" p-2 rounded-full">
-              <img src={Logo} alt="Logo" className="h-10 w-auto" />
+              <img src={Logo} alt="Logo" className="h-12 w-auto" />
             </div>
             <h2 className="text-lg font-bold text-white">GOALBREAKERS</h2>
           </div>

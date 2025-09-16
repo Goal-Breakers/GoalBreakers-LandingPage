@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import Logo from "../assets/logo.png";
+import Logo from "../assets/logoBola.png";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ export default function Header() {
         {/* Lado esquerdo: Logo e Botão */}
         <div className="flex items-center gap-4">
           <Link to="/">
-            <img src={Logo} alt="Logo" className="h-10 w-auto" />
+            <img src={Logo} alt="Logo" className="h-12 w-auto" />
           </Link>
           <button
             onClick={handleInscrever}
