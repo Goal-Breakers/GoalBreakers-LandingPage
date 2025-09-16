@@ -2,15 +2,46 @@ import { useEffect, useState } from "react";
 
 export default function JogadoraPerfil() {
   const [jogadora, setJogadora] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/data/jogadora.json")
-      .then((res) => res.json())
-      .then((data) => setJogadora(data));
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/data/jogadora.json");
+        if (!response.ok) {
+          throw new Error(`Erro ao carregar dados: ${response.status} ${response.statusText}`);
+        }
+        const data = await response.json();
+        setJogadora(data);
+      } catch (err) {
+        setError(err.message);
+        console.error("Erro ao buscar dados da jogadora:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
-  if (!jogadora) {
+  if (loading) {
     return <p className="text-center mt-10">Carregando perfil...</p>;
+  }
+
+  if (error) {
+    return (
+      <div className="text-center mt-10">
+        <p className="text-red-500">Erro ao carregar o perfil da jogadora.</p>
+        <p className="text-gray-400">{error}</p>
+        <button
+          onClick={() => window.location.reload()}
+          className="mt-4 bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded text-white"
+        >
+          Tentar novamente
+        </button>
+      </div>
+    );
   }
 
   return (

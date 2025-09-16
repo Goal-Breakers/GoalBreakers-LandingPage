@@ -11,12 +11,16 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!username.trim() || !password.trim()) {
+      setError('Por favor, preencha todos os campos.');
+      return;
+    }
     const success = login(username, password);
     if (success) {
       setError('');
       navigate('/');
     } else {
-      setError('Invalid username or password');
+      setError('Nome de usuário ou senha incorretos. Tente novamente.');
     }
   };
 
