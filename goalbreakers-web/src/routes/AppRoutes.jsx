@@ -13,6 +13,8 @@ import ProtectedRoute from "./ProtectedRoute";
 import BancoDeTalentos from "../pages/BancoTalentos";
 import JogadoraPerfil from "../pages/JogadoraPerfil";
 import ErrorBoundary from "../components/ErrorBoundary";
+import Cadastrar from "../pages/CriarConta";
+
 
 export const router = createBrowserRouter([
   {
@@ -109,6 +111,14 @@ export const router = createBrowserRouter([
           </ErrorBoundary>
         ),
       },
+      {
+        path: "CriarConta",
+        element: (
+          <ErrorBoundary>
+            <Cadastrar />
+          </ErrorBoundary>          
+        )
+      }
     ],
   },
 ]);

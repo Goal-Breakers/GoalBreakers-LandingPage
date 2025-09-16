@@ -43,7 +43,7 @@ export default function Header() {
         {/* Lado esquerdo: Logo e Botão */}
         <div className="flex items-center gap-4">
           <Link to="/">
-            <img src={Logo} alt="Logo" className="h-12 w-auto" />
+            <img src={Logo} alt="Logo" className="h-12 w-auto transition-transform duration-200 ease-in-out hover:scale-125" />
           </Link>
           <button
             onClick={handleInscrever}
