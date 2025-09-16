@@ -144,7 +144,7 @@ export default function Cadastrar () {
 
         <button
           type="submit"
-          className="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded font-semibold transition"
+          className="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded font-semibold transition cursor-pointer"
         >
           Criar Conta
         </button>
