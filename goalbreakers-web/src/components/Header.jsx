@@ -103,6 +103,13 @@ export default function Header() {
               {isCopaDropdownOpen && (
                 <div className="absolute top-full mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-2 z-20">
                   <Link
+                    to="/login"
+                    className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover: text-white"
+                    onClick={() => setIsCopaDropdownOpen(false)}
+                  >
+                    INSCRIÇÕES
+                  </Link>
+                  <Link
                     to="/copinha/jogos"
                     className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover: text-white"
                     onClick={() => setIsCopaDropdownOpen(false)}
@@ -136,12 +143,12 @@ export default function Header() {
             >
               BANCO DE TALENTOS
             </Link>
-           <Link
+            <Link
               to="/sobreNos"
               className={`hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
-              location.pathname === "/sobreNos"
-              ? "text-purple-500 after:w-full"
-              : "hover:after:w-full"
+                location.pathname === "/sobreNos"
+                  ? "text-purple-500 after:w-full"
+                  : "hover:after:w-full"
               }`}
             >
               SOBRE NÓS
@@ -177,102 +184,122 @@ export default function Header() {
           </button>
         </div>
       </div>
-
       {/* Menu mobile */}
       {isOpen && (
-        <nav className="md:hidden bg-black/90 text-white px-6 py-6 space-y-4 font-semibold">
-          <Link
-            to="/"
-            className="block hover:text-purple-400"
-            onClick={() => setIsOpen(false)}
-          >
-            HOME
-          </Link>
-          <div>
-            <button
-              onClick={() => setCopinhaOpen((open) => !open)}
-              className="block w-full text-left hover:text-purple-400"
-            >
-              COPA
-            </button>
-            {copinhaOpen && (
-              <div className="pl-4 space-y-2">
-                <Link
-                  to="/copinha"
-                  className="block hover:text-purple-400"
-                  onClick={() => {
-                    setCopinhaOpen(false);
-                    setIsOpen(false);
-                  }}
-                >
-                  Inscrição
-                </Link>
-                <Link
-                  to="/times"
-                  className="block hover:text-purple-400"
-                  onClick={() => {
-                    setCopinhaOpen(false);
-                    setIsOpen(false);
-                  }}
-                >
-                  Times
-                </Link>
-                <Link
-                  to="/jogos"
-                  className="block hover:text-purple-400"
-                  onClick={() => {
-                    setCopinhaOpen(false);
-                    setIsOpen(false);
-                  }}
-                >
-                  Jogos
-                </Link>
-                <Link
-                  to="/resultados"
-                  className="block hover:text-purple-400"
-                  onClick={() => {
-                    setCopinhaOpen(false);
-                    setIsOpen(false);
-                  }}
-                >
-                  Resultados
-                </Link>
-              </div>
-            )}
-          </div>
-          <Link
-            to="/banco-talentos"
-            className="block hover:text-purple-400"
-            onClick={() => setIsOpen(false)}
-          >
-            BANCO DE TALENTOS
-          </Link>
-          <Link
-            to="/sobreNos"
-            className="block hover:text-purple-400"
-            onClick={() => setIsOpen(false)}
-          >
-            SOBRE NÓS
-          </Link>
-          {user ? (
-            <>
-              <span className="text-white">Olá, {user.username}</span>
-              <button
-                onClick={handleLogout}
-                className="block hover:text-purple-400 font-semibold"
-              >
-                LOGOUT
-              </button>
-            </>
-          ) : (
+        <nav className="md:hidden bg-black/90 text-white px-6 py-6 font-semibold">
+          {/* Contêiner flexível para centralizar todos os itens */}
+          <div className="flex flex-col items-center space-y-4">
             <Link
-              to="/login"
+              to="/"
               className="block hover:text-purple-400"
               onClick={() => setIsOpen(false)}
             >
-              LOGIN
+              HOME
             </Link>
-          )}
+
+            {/* Container para o dropdown da Copa */}
+            <div className="w-full text-center">
+              <button
+                onClick={() => setCopinhaOpen((open) => !open)}
+                // CLASSE ALTERADA: Garante que o conteúdo (texto + seta) fique centralizado
+                className="inline-flex items-center justify-center w-full hover:text-purple-400"
+              >
+                COPA
+                {/* CÓDIGO DA SETA: A seta gira 180 graus (para cima) quando o menu está aberto */}
+                <svg
+                  className={`w-4 h-4 ml-1 transition-transform duration-200 ${
+                    copinhaOpen ? "rotate-180" : ""
+                  }`}
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+              {copinhaOpen && (
+                <div className="space-y-2 mt-2">
+                  <Link
+                    to="/copinha"
+                    className="block hover:text-purple-400"
+                    onClick={() => {
+                      setCopinhaOpen(false);
+                      setIsOpen(false);
+                    }}
+                  >
+                    INSCRIÇÕES
+                  </Link>
+                  <Link
+                    to="/jogos"
+                    className="block hover:text-purple-400"
+                    onClick={() => {
+                      setCopinhaOpen(false);
+                      setIsOpen(false);
+                    }}
+                  >
+                    JOGOS
+                  </Link>
+                  <Link
+                    to="/times"
+                    className="block hover:text-purple-400"
+                    onClick={() => {
+                      setCopinhaOpen(false);
+                      setIsOpen(false);
+                    }}
+                  >
+                    TIMES
+                  </Link>
+                  <Link
+                    to="/resultados"
+                    className="block hover:text-purple-400"
+                    onClick={() => {
+                      setCopinhaOpen(false);
+                      setIsOpen(false);
+                    }}
+                  >
+                    RESULTADOS
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            <Link
+              to="/banco-talentos"
+              className="block hover:text-purple-400"
+              onClick={() => setIsOpen(false)}
+            >
+              BANCO DE TALENTOS
+            </Link>
+            <Link
+              to="/sobreNos"
+              className="block hover:text-purple-400"
+              onClick={() => setIsOpen(false)}
+            >
+              SOBRE NÓS
+            </Link>
+            {user ? (
+              <>
+                <span className="text-white">Olá, {user.username}</span>
+                <button
+                  onClick={handleLogout}
+                  className="block hover:text-purple-400 font-semibold"
+                >
+                  LOGOUT
+                </button>
+              </>
+            ) : (
+              <Link
+                to="/login"
+                className="block hover:text-purple-400"
+                onClick={() => setIsOpen(false)}
+              >
+                LOGIN
+              </Link>
+            )}
+          </div>
         </nav>
       )}
     </header>
