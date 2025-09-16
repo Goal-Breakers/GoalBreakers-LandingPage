@@ -22,7 +22,7 @@ export default function Features() {
     {
       title: "PASSA A BOLA",
       description: "Conheça os bastidores do projeto",
-      link: "/passa-bola",
+      link: "/sobreNos",
       icon: "",
       color: "bg-red-500",
     },
