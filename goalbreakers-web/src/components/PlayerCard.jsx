@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 export default function PlayerCard({ player, renderStars }) {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-black/40 backdrop-blur-md p-6 rounded-2xl text-center shadow-lg">
       <img
@@ -14,7 +18,10 @@ export default function PlayerCard({ player, renderStars }) {
         <p className="text-xs text-gray-300">{player.localizacao}</p>
       )}
       <div className="flex justify-center my-2">{renderStars(player.estrelas)}</div>
-      <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg">
+      <button
+        onClick={() => navigate('/jogadora', { state: { player } })}
+        className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg"
+      >
         Ver Perfil
       </button>
     </div>
