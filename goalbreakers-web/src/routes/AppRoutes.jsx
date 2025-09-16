@@ -9,6 +9,7 @@ import Results from "../pages/Results";
 import Login from "../pages/Login";
 import CopinhaLayout from "../pages/CopinhaLayout";
 import ProtectedRoute from "./ProtectedRoute";
+import BancoDeTalentos from "../pages/BancoTalentos";
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
             element: <Results />,
           }
         ]
+      },
+      {
+        path: "banco-talentos",
+        element: <BancoDeTalentos/>
       },
       {
         path: "login",
