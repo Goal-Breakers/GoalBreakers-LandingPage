@@ -12,57 +12,103 @@ import SobreNos from "../pages/sobreNos";
 import ProtectedRoute from "./ProtectedRoute";
 import BancoDeTalentos from "../pages/BancoTalentos";
 import JogadoraPerfil from "../pages/JogadoraPerfil";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
+    ),
     errorElement: <PageNotFound />,
     children: [
       {
         index: true,
-        element: <Home />,
+        element: (
+          <ErrorBoundary>
+            <Home />
+          </ErrorBoundary>
+        ),
       },
       {
         path: "copinha",
-        element: <CopinhaLayout />,
+        element: (
+          <ErrorBoundary>
+            <CopinhaLayout />
+          </ErrorBoundary>
+        ),
         children: [
           {
             index: true,
-            element: <ProtectedRoute> <Copinha/> </ProtectedRoute>
+            element: (
+              <ErrorBoundary>
+                <ProtectedRoute>
+                  {" "}
+                  <Copinha />{" "}
+                </ProtectedRoute>
+              </ErrorBoundary>
+            ),
           },
           {
             path: "times",
-            element: <Teams />,
+            element: (
+              <ErrorBoundary>
+                <Teams />
+              </ErrorBoundary>
+            ),
           },
           {
             path: "jogos",
-            element: <Games />,
+            element: (
+              <ErrorBoundary>
+                <Games />
+              </ErrorBoundary>
+            ),
           },
           {
             path: "resultados",
-            element: <Results />,
+            element: (
+              <ErrorBoundary>
+                <Results />
+              </ErrorBoundary>
+            ),
           },
-        
-        ]
+        ],
       },
       {
         path: "banco-talentos",
-        element: <BancoDeTalentos/>
+        element: (
+          <ErrorBoundary>
+            <BancoDeTalentos />
+          </ErrorBoundary>
+        ),
       },
       {
         path: "jogadora",
-        element: <JogadoraPerfil/>
+        element: (
+          <ErrorBoundary>
+            <JogadoraPerfil />
+          </ErrorBoundary>
+        ),
       },
       {
         path: "sobreNos",
-        element: <SobreNos />,
+        element: (
+          <ErrorBoundary>
+            <SobreNos />
+          </ErrorBoundary>
+        ),
       },
       {
         path: "login",
-        element: <Login />,
+        element: (
+          <ErrorBoundary>
+            <Login />
+          </ErrorBoundary>
+        ),
       },
-       
     ],
   },
 ]);
