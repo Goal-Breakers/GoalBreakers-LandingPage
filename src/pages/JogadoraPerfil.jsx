@@ -95,7 +95,7 @@ export default function JogadoraPerfil() {
         )}
         <div>
           <h1 className="text-4xl font-bold text-purple-700">{jogadora.nome}</h1>
-          <p className="text-gray-600 italic">{jogadora.atual}</p>
+          <p className="text-gray-300 italic">{jogadora.atual}</p>
         </div>
       </div>
 
@@ -127,22 +127,22 @@ export default function JogadoraPerfil() {
       </div>
 
       {/* Talentos e Características */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12">
-        <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12 ">
+        <div className="h-70 w-110 bg-gradient-to-tr from-purple-700 to-purple-400 rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:scale-110">
           <h2 className="text-xl font-semibold mb-2 text-white">
             Talentos
           </h2>
-          <ul className="list-disc list-inside space-y-1 text-gray-400">
+          <ul className="list-disc list-inside space-y-1 text-white">
             {jogadora.talentos.map((t, i) => (
               <li key={i}>{t}</li>
             ))}
           </ul>
         </div>
-        <div>
-          <h2 className="text-xl font-semibold mb-2 text-white">
+        <div className="h-70 w-110 bg-gradient-to-tr from-purple-700 to-purple-400 rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:scale-110">
+          <h2 className="text-xl font-semibold mb-2 text-white pt-5">
             Características
           </h2>
-          <ul className="space-y-1 text-gray-400">
+          <ul className="space-y-1 text-white">
             <li><b>Posição:</b> {jogadora.caracteristicas.posicao}</li>
             <li><b>Idade:</b> {jogadora.caracteristicas.idade} anos</li>
             <li><b>Altura:</b> {jogadora.caracteristicas.altura} m</li>
@@ -156,7 +156,7 @@ export default function JogadoraPerfil() {
         <h2 className="text-xl font-semibold mb-3 text-white">
           Conexões
         </h2>
-        <div className="flex flex-wrap gap-6 text-gray-400">
+        <div className="flex flex-wrap gap-6 text-gray-400 justify-center">
           <span className="flex items-center gap-2">
             👥 {jogadora.conexoes.seguidores} Seguidores
           </span>
