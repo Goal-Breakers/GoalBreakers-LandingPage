@@ -136,12 +136,12 @@ export default function Header() {
             >
               BANCO DE TALENTOS
             </Link>
-            <Link
-              to="/login"
+           <Link
+              to="/sobreNos"
               className={`hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
-                location.pathname === "/sobreNos"
-                  ? "text-purple-500 after:w-full"
-                  : "hover:after:w-full"
+              location.pathname === "/sobreNos"
+              ? "text-purple-500 after:w-full"
+              : "hover:after:w-full"
               }`}
             >
               SOBRE NÓS

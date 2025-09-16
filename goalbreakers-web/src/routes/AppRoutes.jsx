@@ -8,6 +8,7 @@ import Games from "../pages/Games";
 import Results from "../pages/Results";
 import Login from "../pages/Login";
 import CopinhaLayout from "../pages/CopinhaLayout";
+import SobreNos from "../pages/sobreNos";
 import ProtectedRoute from "./ProtectedRoute";
 import BancoDeTalentos from "../pages/BancoTalentos";
 import JogadoraPerfil from "../pages/JogadoraPerfil";
@@ -41,7 +42,8 @@ export const router = createBrowserRouter([
           {
             path: "resultados",
             element: <Results />,
-          }
+          },
+        
         ]
       },
       {
@@ -53,9 +55,14 @@ export const router = createBrowserRouter([
         element: <JogadoraPerfil/>
       },
       {
+        path: "sobreNos",
+        element: <SobreNos />,
+      },
+      {
         path: "login",
         element: <Login />,
       },
+       
     ],
   },
 ]);
