@@ -35,6 +35,12 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('authUser');
   };
 
+  const Cadastrar = (userData) => {
+    // Mock account creation - always succeed for now
+    console.log('User registered:', userData);
+    return true;
+  };
+
   const isAdmin = () => user && user.role === 'admin';
 
   return (
@@ -42,6 +48,7 @@ export const AuthProvider = ({ children }) => {
       user,
       login,
       logout,
+      Cadastrar,
       isAdmin
     }}>
       {children}

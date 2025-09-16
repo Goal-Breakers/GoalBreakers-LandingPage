@@ -6,22 +6,45 @@ import { Link } from 'react-router-dom';
 export default function Cadastrar () {
   const { Cadastrar } = useAuth();
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [nomeCompleto, setNomeCompleto] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [ddd, setDdd] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [email, setEmail] = useState('');
+  const [nomeUsuario, setNomeUsuario] = useState('');
+  const [senha, setSenha] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!username.trim() || !password.trim()) {
+    if (!nomeCompleto.trim() || !cpf.trim() || !ddd.trim() || !telefone.trim() || !email.trim() || !nomeUsuario.trim() || !senha.trim()) {
       setError('Por favor, preencha todos os campos.');
       return;
     }
-    const success = login(username, password);
+    if (!ddd.includes('+')) {
+      console.log('Código de país deve incluir +');
+      setError('Código de país inválido.');
+      return;
+    }
+    const phoneDigits = telefone.replace(/\s/g, '');
+    if (phoneDigits.length !== 11 || isNaN(phoneDigits)) {
+      console.log('Número de telefone deve ter exatamente 11 dígitos.');
+      setError('Número de telefone inválido.');
+      return;
+    }
+    console.log('Email entered:', email);
+    if (!email.includes('@')) {
+      console.log('Email deve conter @.');
+      setError('Email inválido.');
+      return;
+    }
+    const success = Cadastrar({ nomeCompleto, cpf, ddd, telefone, email, nomeUsuario, senha });
     if (success) {
       setError('');
+      alert('Conta criada com sucesso!');
       navigate('/');
     } else {
-      setError('Nome de usuário ou senha incorretos. Tente novamente.');
+      setError('Erro ao criar conta. Tente novamente.');
     }
   };
 
@@ -32,72 +55,88 @@ export default function Cadastrar () {
         {error && <p className="text-red-500 mb-4">{error}</p>}
 
         <div className="mb-4">
-          <label htmlFor="username" className="block mb-1 font-semibold">Nome Completo</label>
+          <label htmlFor="nomeCompleto" className="block mb-1 font-semibold">Nome Completo</label>
           <input
-            id="username"
+            id="nomeCompleto"
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={nomeCompleto}
+            onChange={(e) => setNomeCompleto(e.target.value)}
             className="w-full px-4 py-2 rounded bg-gray-800 border border-purple-500 focus:ring-2 focus:ring-purple-400"
             required
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="username" className="block mb-1 font-semibold">CPF ou RG</label>
+          <label htmlFor="cpf" className="block mb-1 font-semibold">CPF ou RG</label>
           <input
-            id="username"
+            id="cpf"
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={cpf}
+            onChange={(e) => setCpf(e.target.value)}
             className="w-full px-4 py-2 rounded bg-gray-800 border border-purple-500 focus:ring-2 focus:ring-purple-400"
             required
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="username" className="block mb-1 font-semibold">Número de Telefone</label>
+          <div className="flex space-x-2">
+            <div className="w-20">
+              <label htmlFor="ddd" className="block mb-1 font-semibold">Código</label>
+              <input
+                id="ddd"
+                type="text"
+                value={ddd}
+                onChange={(e) => setDdd(e.target.value)}
+                className="w-full px-2 py-2 rounded bg-gray-800 border border-purple-500 focus:ring-2 focus:ring-purple-400"
+                required
+                placeholder="+55"
+              />
+            </div>
+            <div className="flex-1">
+              <label htmlFor="telefone" className="block mb-1 font-semibold">Número de Telefone</label>
+              <input
+                id="telefone"
+                type="number"
+                value={telefone}
+                onChange={(e) => setTelefone(e.target.value)}
+                className="w-full px-4 py-2 rounded bg-gray-800 border border-purple-500 focus:ring-2 focus:ring-purple-400"
+                required
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="email" className="block mb-1 font-semibold">Endereço de E-mail</label>
           <input
-            id="username"
+            id="email"
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full px-4 py-2 rounded bg-gray-800 border border-purple-500 focus:ring-2 focus:ring-purple-400"
             required
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="username" className="block mb-1 font-semibold">Endereço de E-mail</label>
+          <label htmlFor="nomeUsuario" className="block mb-1 font-semibold">Nome de Usuário</label>
           <input
-            id="username"
+            id="nomeUsuario"
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="w-full px-4 py-2 rounded bg-gray-800 border border-purple-500 focus:ring-2 focus:ring-purple-400"
-            required
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="username" className="block mb-1 font-semibold">Nome de Usuário</label>
-          <input
-            id="username"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={nomeUsuario}
+            onChange={(e) => setNomeUsuario(e.target.value)}
             className="w-full px-4 py-2 rounded bg-gray-800 border border-purple-500 focus:ring-2 focus:ring-purple-400"
             required
           />
         </div>
 
         <div className="mb-6">
-          <label htmlFor="password" className="block mb-1 font-semibold">Senha</label>
+          <label htmlFor="senha" className="block mb-1 font-semibold">Senha</label>
           <input
-            id="password"
+            id="senha"
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
             className="w-full px-4 py-2 rounded bg-gray-800 border border-purple-500 focus:ring-2 focus:ring-purple-400"
             required
           />
@@ -107,7 +146,7 @@ export default function Cadastrar () {
           type="submit"
           className="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded font-semibold transition"
         >
-          Log In
+          Criar Conta
         </button>
 
         <p className='pt-6'>Já tem uma conta?</p>
