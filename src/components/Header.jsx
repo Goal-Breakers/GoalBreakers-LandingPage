@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import Logo from "../assets/logoBola.png";
@@ -12,17 +12,6 @@ export default function Header() {
   const [isCopaDropdownOpen, setIsCopaDropdownOpen] = useState(false);
 
   const { user, logout } = useAuth();
-
-  // Fecha o dropdown se clicar fora
-  // useEffect(() => {
-  //   function handleClickOutside(event) {
-  //     if (copinhaRef.current && !copinhaRef.current.contains(event.target)) {
-  //       setCopinhaOpen(false);
-  //     }
-  //   }
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => document.removeEventListener("mousedown", handleClickOutside);
-  // }, []);
 
   const handleInscrever = () => {
     if (user) {
@@ -124,7 +113,7 @@ export default function Header() {
                     TIMES
                   </Link>
                   <Link
-                    to="copinha/resultados"
+                    to="/copinha/resultados"
                     className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover: text-white"
                     onClick={() => setIsCopaDropdownOpen(false)}
                   >
@@ -233,7 +222,7 @@ export default function Header() {
                     INSCRIÇÕES
                   </Link>
                   <Link
-                    to="/jogos"
+                    to="/copinha/jogos"
                     className="block hover:text-purple-400"
                     onClick={() => {
                       setCopinhaOpen(false);
@@ -243,7 +232,7 @@ export default function Header() {
                     JOGOS
                   </Link>
                   <Link
-                    to="/times"
+                    to="/copinha/times"
                     className="block hover:text-purple-400"
                     onClick={() => {
                       setCopinhaOpen(false);
@@ -253,7 +242,7 @@ export default function Header() {
                     TIMES
                   </Link>
                   <Link
-                    to="/resultados"
+                    to="/copinha/resultados"
                     className="block hover:text-purple-400"
                     onClick={() => {
                       setCopinhaOpen(false);
