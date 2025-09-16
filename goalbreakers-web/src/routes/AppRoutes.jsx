@@ -10,6 +10,7 @@ import Login from "../pages/Login";
 import CopinhaLayout from "../pages/CopinhaLayout";
 import ProtectedRoute from "./ProtectedRoute";
 import BancoDeTalentos from "../pages/BancoTalentos";
+import JogadoraPerfil from "../pages/JogadoraPerfil";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
       {
         path: "banco-talentos",
         element: <BancoDeTalentos/>
+      },
+      {
+        path: "jogadora",
+        element: <JogadoraPerfil/>
       },
       {
         path: "login",

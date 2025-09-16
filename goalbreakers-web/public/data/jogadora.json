@@ -1,0 +1,31 @@
+{
+  "nome": "Laura Tigre",
+  "atual": "Atualmente joga pelo 'Estrelas de Campo F.C.'",
+  "historia": "Ana Clara começou a jogar futebol aos 6 anos no campinho do bairro. Desde cedo demonstrou paixão pelo esporte...",
+  "destaques": ["Gol histórico", "Assistência incrível", "Recuperação rápida"],
+  "talentos": [
+    "Ótimo drible",
+    "Ótima corrida",
+    "Visão de jogo",
+    "Controle de bola",
+    "Passe preciso",
+    "Liderança",
+    "Marcação",
+    "Resistência"
+  ],
+  "caracteristicas": {
+    "posicao": "Meio-campo central",
+    "idade": 19,
+    "altura": 1.65,
+    "peso": 58
+  },
+  "conexoes": {
+    "seguidores": 2500,
+    "seguindo": 320
+  },
+  "feed": [
+    { "titulo": "Treino do dia", "video": "https://www.youtube.com/embed/dQw4w9WgXcQ" },
+    { "titulo": "Gol na copinha", "video": "https://www.youtube.com/embed/aqz-KE-bpKQ" },
+    { "titulo": "Foto com o time", "video": "https://www.youtube.com/embed/tgbNymZ7vqY" }
+  ]
+}
