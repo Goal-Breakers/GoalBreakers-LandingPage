@@ -22,4 +22,37 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-family: 'Contrail One';
+}
+
+h2{
+  font-family: 'Contrail One';
+}
+
+h3{
+  font-family: 'Contrail One';
+}
+
+h4{
+  font-family: 'Contrail One';
+}
+
+h5{
+  font-family: 'Contrail One';
+}
+
+h6{
+  font-family: 'Contrail One';
+}
+
+nav{
+  font-family: 'Contrail One';
+}
+
+button{
+  font-family: 'Contrail one';
+}
+
+p{
+  font-family: 'Oswald';
 }

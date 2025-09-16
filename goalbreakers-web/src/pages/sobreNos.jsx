@@ -28,7 +28,7 @@ export default function SobreNos() {
               descricao: "Responsável pela interface e experiência do usuário.",
             },
             {
-              nome: "Aurea Sardinha",
+              nome: "Áurea Sardinha",
               cargo: "UI/UX Designer",
               descricao: "Cuida da identidade visual e da usabilidade do projeto.",
             },
