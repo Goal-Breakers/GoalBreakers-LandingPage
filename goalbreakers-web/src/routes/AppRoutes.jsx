@@ -8,6 +8,7 @@ import Games from "../pages/Games";
 import Results from "../pages/Results";
 import Login from "../pages/Login";
 import CopinhaLayout from "../pages/CopinhaLayout";
+import SobreNos from "../pages/sobreNos";
 import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
@@ -39,13 +40,19 @@ export const router = createBrowserRouter([
           {
             path: "resultados",
             element: <Results />,
-          }
+          },
+        
         ]
+      },
+      {
+        path: "sobreNos",
+        element: <SobreNos />,
       },
       {
         path: "login",
         element: <Login />,
       },
+       
     ],
   },
 ]);
