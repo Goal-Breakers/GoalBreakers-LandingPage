@@ -21,13 +21,17 @@ Conheça os cérebros e corações por trás do Goal Breakers:
 * **Laura Tigre** - RM 565281
 * **Otávio Inaba** - RM 565003
 
+
 ---
 
 ### 🎨 Design e Tecnologia
 
-Dê uma olhada em como o nosso site ficou! 🤩
-https://goalbreakers-page.vercel.app/
-*Uma visão do nosso site, pronto para quebrar barreiras!*
+**Dê uma olhada em como o nosso site ficou!** 🤩
+
+**https://goalbreakers-page.vercel.app/**
+
+**Uma visão do nosso site, pronto para quebrar barreiras!**
+
 ---
 
 Agradecemos a todos que nos apoiaram nesse projeto! Juntos, somos mais fortes! ❤️
