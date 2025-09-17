@@ -26,8 +26,7 @@ Conheça os cérebros e corações por trás do Goal Breakers:
 ### 🎨 Design e Tecnologia
 
 Dê uma olhada em como o nosso site ficou! 🤩
-
-![Clique aqui!](https://goalbreakers-page.vercel.app/)
+https://goalbreakers-page.vercel.app/
 *Uma visão do nosso site, pronto para quebrar barreiras!*
 ---
 
