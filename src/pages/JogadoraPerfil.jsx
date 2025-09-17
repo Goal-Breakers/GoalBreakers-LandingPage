@@ -7,6 +7,7 @@ export default function JogadoraPerfil() {
   const [jogadora, setJogadora] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showProposal, setShowProposal] = useState(false);
 
   useEffect(() => {
     if (player) {
@@ -96,22 +97,28 @@ export default function JogadoraPerfil() {
         <div>
           <h1 className="text-4xl font-bold text-purple-700">{jogadora.nome}</h1>
           <p className="text-gray-300 italic">{jogadora.atual}</p>
+          <button
+            onClick={() => setShowProposal(true)}
+            className="mt-4 bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded text-white transition cursor-pointer"
+          >
+            Enviar proposta
+          </button>
         </div>
       </div>
 
       {/* História */}
       <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-3 text-white">
+        <h2 className="text-4xl font-bold mb-3 text-white">
           História da Jogadora
         </h2>
-        <p className="text-center leading-relaxed text-white">
+        <p className="text-center leading-relaxed text-white text-xl">
           {jogadora.historia}
         </p>
       </div>
 
       {/* Destaques */}
       <div className="mt-10">
-        <h2 className="text-2xl font-semibold mb-4 text-white">
+        <h2 className="text-4xl font-semibold mb-4 text-white pb-5 pt-12">
           Destaques 🔥
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -120,14 +127,14 @@ export default function JogadoraPerfil() {
               key={i}
               className="w-full h-32 bg-gradient-to-tr from-purple-700 to-purple-400 rounded-lg flex items-center justify-center shadow-md"
             >
-              <span className="text-white font-semibold text-lg">{d}</span>
+              <span className="text-white font-semibold text-2xl">{d}</span>
             </div>
           ))}
         </div>
       </div>
 
       {/* Talentos e Características */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12 ">
+      <div className="flex flex-col md:flex-row justify-center gap-10 mt-12">
         <div className="h-70 w-110 bg-gradient-to-tr from-purple-700 to-purple-400 rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:scale-110">
           <h2 className="text-xl font-semibold mb-2 text-white">
             Talentos
@@ -153,25 +160,25 @@ export default function JogadoraPerfil() {
 
       {/* Conexões */}
       <div className="mt-12">
-        <h2 className="text-xl font-semibold mb-3 text-white">
+        <h2 className="text-4xl font-semibold mb-3 text-white pb-8">
           Conexões
         </h2>
         <div className="flex flex-wrap gap-6 text-gray-400 justify-center">
-          <span className="flex items-center gap-2">
+          <span className="flex items-center gap-2 transition cursor-pointer text-lg hover:text-white hover:text-white">
             👥 {jogadora.conexoes.seguidores} Seguidores
           </span>
-          <span className="flex items-center gap-2">
+          <span className="flex items-center gap-2 transition cursor-pointer text-lg hover:text-white">
             ✅ {jogadora.conexoes.seguindo} Seguindo
           </span>
-          <span className="flex items-center gap-2">💬 Mensagens</span>
-          <span className="flex items-center gap-2">🔗 Conexões</span>
-          <span className="flex items-center gap-2">📌 Minhas inscrições</span>
+          <span className="flex items-center gap-2 transition cursor-pointer text-lg hover:text-white">💬 Mensagens</span>
+          <span className="flex items-center gap-2 transition cursor-pointer text-lg hover:text-white">🔗 Conexões</span>
+          <span className="flex items-center gap-2 transition cursor-pointer text-lg hover:text-white">📌 Minhas inscrições</span>
         </div>
       </div>
 
       {/* Feed (Vídeos) */}
       <div className="mt-12">
-        <h2 className="text-xl font-semibold mb-3 text-white">Feed</h2>
+        <h2 className="text-4xl font-semibold mb-3 text-white">Feed</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {jogadora.feed.map((post, i) => (
             <div
@@ -191,6 +198,17 @@ export default function JogadoraPerfil() {
           ))}
         </div>
       </div>
+
+      {/* Sidebar para Enviar Proposta */}
+      {showProposal && (
+        <div className="fixed bottom-0 right-0 h-96 w-80 md:h-[480px] md:w-96 bg-gradient-to-br from-gray-900 via-purple-900 to-black text-white p-6 z-50">
+          <button onClick={() => setShowProposal(false)} className="absolute top-2 right-2 text-white text-xl">×</button>
+          <h2 className="text-2xl font-bold mb-2">Enviar proposta</h2>
+          <p className="text-gray-300 mb-4">Envie uma proposta para a jogadora, descrevendo sua oferta ou interesse em contratá-la.</p>
+          <textarea className="w-full h-32 bg-gray-800 border border-purple-500 rounded p-2 mb-4" placeholder="Digite sua proposta..."></textarea>
+          <button onClick={() => { alert('Proposta enviada!'); setShowProposal(false); }} className="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded text-white w-full transition cursor-pointer ">Enviar</button>
+        </div>
+      )}
     </div>
   );
 }
