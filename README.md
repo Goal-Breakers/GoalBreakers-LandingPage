@@ -27,7 +27,7 @@ Conheça os cérebros e corações por trás do Goal Breakers:
 
 Dê uma olhada em como o nosso site ficou! 🤩
 
-![Nossa página no vercel!](https://goalbreakers-page.vercel.app/)
+![Clique aqui!](https://goalbreakers-page.vercel.app/)
 *Uma visão do nosso site, pronto para quebrar barreiras!*
 ---
 
