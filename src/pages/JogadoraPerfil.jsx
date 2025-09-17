@@ -88,18 +88,18 @@ export default function JogadoraPerfil() {
   return (
     <div className="bg-gradient-to-br from-gray-900 via-purple-900 to-black min-h-screen text-white px-6 py-20">
       {/* Cabeçalho */}
-      <div className="flex items-center gap-8">
+      <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 md:gap-8">
         {player ? (
-          <img src={player.foto} alt={player.nome} className="w-40 h-40 rounded-full border-4 border-purple-500" />
+          <img src={player.foto} alt={player.nome} className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full border-4 border-purple-500" />
         ) : (
-          <div className="w-40 h-40 rounded-full bg-purple-300 border-4 border-purple-500"></div>
+          <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full bg-purple-300 border-4 border-purple-500"></div>
         )}
-        <div>
-          <h1 className="text-5xl font-bold text-purple-700" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>{jogadora.nome}</h1>
-          <p className="text-gray-300 italic text-xl">{jogadora.atual}</p>
+        <div className="text-center sm:text-left">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-700" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>{jogadora.nome}</h1>
+          <p className="text-gray-300 italic text-base sm:text-lg md:text-xl">{jogadora.atual}</p>
           <button
             onClick={() => setShowProposal(true)}
-            className="mt-4 bg-purple-600 hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-600 px-5 py-2 rounded text-white transition cursor-pointer text-lg"
+            className="mt-4 bg-purple-600 hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-600 px-4 sm:px-5 py-2 rounded text-white transition cursor-pointer text-base sm:text-lg"
           >
             Enviar proposta
           </button>
@@ -107,36 +107,36 @@ export default function JogadoraPerfil() {
       </div>
 
       {/* História */}
-      <div className="mt-8 bg-gradient-to-r from-purple-800 to-purple-600 p-6 rounded-lg">
-        <h2 className="text-4xl font-bold mb-3 text-white">
+      <div className="mt-8 bg-gradient-to-r from-purple-800 to-purple-600 p-4 sm:p-6 rounded-lg">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 text-white">
           História da Jogadora
         </h2>
-        <p className="text-center leading-relaxed text-white text-xl">
+        <p className="text-left sm:text-center leading-relaxed text-white text-lg sm:text-xl">
           {jogadora.historia}
         </p>
       </div>
 
       {/* Destaques */}
       <div className="mt-10">
-        <h2 className="text-4xl font-semibold mb-4 text-white pb-5 pt-12">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 text-white pb-5 pt-12">
           Destaques 🔥
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {jogadora.destaques.map((d, i) => (
             <div
               key={i}
-              className="w-full h-32 bg-gradient-to-tr from-purple-700 to-purple-400 rounded-lg flex items-center justify-center shadow-md hover:scale-102 hover:shadow-xl transition-transform duration-300 ease-in-out"
+              className="w-full h-24 sm:h-32 bg-gradient-to-tr from-purple-700 to-purple-400 rounded-lg flex items-center justify-center shadow-md hover:scale-102 hover:shadow-xl transition-transform duration-300 ease-in-out"
             >
-              <span className="text-white font-semibold text-2xl">{d}</span>
+              <span className="text-white font-semibold text-lg sm:text-xl md:text-2xl">{d}</span>
             </div>
           ))}
         </div>
       </div>
 
       {/* Talentos e Características */}
-      <div className="flex flex-col md:flex-row justify-center gap-10 mt-12">
-        <div className="h-70 w-110 bg-gradient-to-tr from-purple-700 to-purple-400 rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
-          <h2 className="text-xl font-semibold mb-2 text-white">
+      <div className="flex flex-col md:flex-row justify-center gap-6 sm:gap-10 mt-12">
+        <div className="h-auto sm:h-70 w-full sm:w-110 bg-gradient-to-tr from-purple-700 to-purple-400 rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl p-4">
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 text-white">
             Talentos
           </h2>
           <ul className="list-disc list-inside space-y-1 text-white">
@@ -145,8 +145,8 @@ export default function JogadoraPerfil() {
             ))}
           </ul>
         </div>
-        <div className="h-70 w-110 bg-gradient-to-tr from-purple-700 to-purple-400 rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
-          <h2 className="text-xl font-semibold mb-2 text-white pt-5">
+        <div className="h-auto sm:h-70 w-full sm:w-110 bg-gradient-to-tr from-purple-700 to-purple-400 rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl p-4">
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 text-white">
             Características
           </h2>
           <ul className="space-y-1 text-white">
