@@ -19,7 +19,7 @@ export default function Hero() {
           </h1>
         </div>
 
-        <div className="order-2 md:col-span-6 flex flex-col text-left md:pl-10">
+        <div className="order-2 md:col-span-6 flex flex-col text-left md:pl-10 pb-20">
           <h1 className="text-4xl md:text-5xl font-semibold text-purple-400 mb-4 mt-auto">
             O Maior Portal do Futebol Feminino
           </h1>
