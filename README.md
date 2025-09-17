@@ -1,4 +1,4 @@
-# ⚽ Goal Breakers: Acelerando o Futebol Feminino! 🚀
+# ⚽ Goal Breakers: A gente passa a bola e vocês fazem o gol! 🚀
 
 Bem-vindos ao projeto **Goal Breakers**! Somos um time super empolgado, apaixonado por tecnologia e por impulsionar o talento das jogadoras de futebol feminino no Brasil. 💪
 
