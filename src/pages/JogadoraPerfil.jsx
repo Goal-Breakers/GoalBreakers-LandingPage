@@ -88,18 +88,18 @@ export default function JogadoraPerfil() {
   return (
     <div className="bg-gradient-to-br from-gray-900 via-purple-900 to-black min-h-screen text-white px-6 py-20">
       {/* Cabeçalho */}
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-8">
         {player ? (
-          <img src={player.foto} alt={player.nome} className="w-32 h-32 rounded-full border-4 border-purple-500" />
+          <img src={player.foto} alt={player.nome} className="w-40 h-40 rounded-full border-4 border-purple-500" />
         ) : (
-          <div className="w-32 h-32 rounded-full bg-purple-300 border-4 border-purple-500"></div>
+          <div className="w-40 h-40 rounded-full bg-purple-300 border-4 border-purple-500"></div>
         )}
         <div>
-          <h1 className="text-4xl font-bold text-purple-700">{jogadora.nome}</h1>
-          <p className="text-gray-300 italic">{jogadora.atual}</p>
+          <h1 className="text-5xl font-bold text-purple-700" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>{jogadora.nome}</h1>
+          <p className="text-gray-300 italic text-xl">{jogadora.atual}</p>
           <button
             onClick={() => setShowProposal(true)}
-            className="mt-4 bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded text-white transition cursor-pointer"
+            className="mt-4 bg-purple-600 hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-600 px-5 py-2 rounded text-white transition cursor-pointer text-lg"
           >
             Enviar proposta
           </button>
@@ -107,7 +107,7 @@ export default function JogadoraPerfil() {
       </div>
 
       {/* História */}
-      <div className="mt-8">
+      <div className="mt-8 bg-gradient-to-r from-purple-800 to-purple-600 p-6 rounded-lg">
         <h2 className="text-4xl font-bold mb-3 text-white">
           História da Jogadora
         </h2>
@@ -125,7 +125,7 @@ export default function JogadoraPerfil() {
           {jogadora.destaques.map((d, i) => (
             <div
               key={i}
-              className="w-full h-32 bg-gradient-to-tr from-purple-700 to-purple-400 rounded-lg flex items-center justify-center shadow-md"
+              className="w-full h-32 bg-gradient-to-tr from-purple-700 to-purple-400 rounded-lg flex items-center justify-center shadow-md hover:scale-102 hover:shadow-xl transition-transform duration-300 ease-in-out"
             >
               <span className="text-white font-semibold text-2xl">{d}</span>
             </div>
@@ -135,7 +135,7 @@ export default function JogadoraPerfil() {
 
       {/* Talentos e Características */}
       <div className="flex flex-col md:flex-row justify-center gap-10 mt-12">
-        <div className="h-70 w-110 bg-gradient-to-tr from-purple-700 to-purple-400 rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:scale-110">
+        <div className="h-70 w-110 bg-gradient-to-tr from-purple-700 to-purple-400 rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
           <h2 className="text-xl font-semibold mb-2 text-white">
             Talentos
           </h2>
@@ -145,7 +145,7 @@ export default function JogadoraPerfil() {
             ))}
           </ul>
         </div>
-        <div className="h-70 w-110 bg-gradient-to-tr from-purple-700 to-purple-400 rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:scale-110">
+        <div className="h-70 w-110 bg-gradient-to-tr from-purple-700 to-purple-400 rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
           <h2 className="text-xl font-semibold mb-2 text-white pt-5">
             Características
           </h2>
@@ -164,15 +164,15 @@ export default function JogadoraPerfil() {
           Conexões
         </h2>
         <div className="flex flex-wrap gap-6 text-gray-400 justify-center">
-          <span className="flex items-center gap-2 transition cursor-pointer text-lg hover:text-white hover:text-white">
+          <span className="flex items-center gap-2 transition cursor-pointer text-lg hover:text-white hover:scale-105">
             👥 {jogadora.conexoes.seguidores} Seguidores
           </span>
-          <span className="flex items-center gap-2 transition cursor-pointer text-lg hover:text-white">
+          <span className="flex items-center gap-2 transition cursor-pointer text-lg hover:text-white hover:scale-105">
             ✅ {jogadora.conexoes.seguindo} Seguindo
           </span>
-          <span className="flex items-center gap-2 transition cursor-pointer text-lg hover:text-white">💬 Mensagens</span>
-          <span className="flex items-center gap-2 transition cursor-pointer text-lg hover:text-white">🔗 Conexões</span>
-          <span className="flex items-center gap-2 transition cursor-pointer text-lg hover:text-white">📌 Minhas inscrições</span>
+          <span className="flex items-center gap-2 transition cursor-pointer text-lg hover:text-white hover:scale-105">💬 Mensagens</span>
+          <span className="flex items-center gap-2 transition cursor-pointer text-lg hover:text-white hover:scale-105">🔗 Conexões</span>
+          <span className="flex items-center gap-2 transition cursor-pointer text-lg hover:text-white hover:scale-105">📌 Minhas inscrições</span>
         </div>
       </div>
 
@@ -183,7 +183,7 @@ export default function JogadoraPerfil() {
           {jogadora.feed.map((post, i) => (
             <div
               key={i}
-              className="relative w-full h-48 rounded-lg overflow-hidden shadow-lg"
+              className="relative w-full h-48 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer"
             >
               <iframe
                 src={post.video}
