@@ -13,11 +13,13 @@ export default function Header() {
 
   const { user, logout } = useAuth();
 
+  const { setIsLoginModalOpen } = useAuth();
+
   const handleInscrever = () => {
     if (user) {
       navigate("/copinha");
     } else {
-      navigate("/login");
+      setIsLoginModalOpen(true);
     }
   };
 
@@ -32,7 +34,11 @@ export default function Header() {
         {/* Lado esquerdo: Logo e Botão */}
         <div className="flex items-center gap-4">
           <Link to="/">
-            <img src={Logo} alt="Logo" className="h-12 w-auto transition-transform duration-200 ease-in-out hover:scale-125" />
+            <img
+              src={Logo}
+              alt="Logo"
+              className="h-12 w-auto transition-transform duration-200 ease-in-out hover:scale-125"
+            />
           </Link>
           <button
             onClick={handleInscrever}
@@ -92,7 +98,6 @@ export default function Header() {
               {isCopaDropdownOpen && (
                 <div className="absolute top-full mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-2 z-20">
                   <button
-                    
                     className="block mx-auto px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover: text-white"
                     onClick={handleInscrever}
                   >
@@ -153,8 +158,8 @@ export default function Header() {
                 </button>
               </>
             ) : (
-              <Link
-                to="/login"
+              <button
+                onClick={() => setIsLoginModalOpen(true)}
                 className={`hover:text-purple-400 relative after:content-[''] after:block after:h-[2px] after:bg-purple-500 after:w-0 after:transition-all ${
                   location.pathname === "/login"
                     ? "text-purple-500 after:w-full"
@@ -162,7 +167,7 @@ export default function Header() {
                 }`}
               >
                 LOGIN
-              </Link>
+              </button>
             )}
           </nav>
           <button
@@ -212,7 +217,6 @@ export default function Header() {
               {copinhaOpen && (
                 <div className="space-y-2 mt-2">
                   <button
-                    
                     className="block hover:text-purple-400"
                     onClick={handleInscrever}
                   >
@@ -277,13 +281,15 @@ export default function Header() {
                 </button>
               </>
             ) : (
-              <Link
-                to="/login"
+              <button
+                onClick={() => {
+                  setIsLoginModalOpen(true);
+                  setIsOpen(false);
+                }}
                 className="block hover:text-purple-400"
-                onClick={() => setIsOpen(false)}
               >
                 LOGIN
-              </Link>
+              </button>
             )}
           </div>
         </nav>

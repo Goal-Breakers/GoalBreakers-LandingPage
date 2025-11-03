@@ -15,7 +15,6 @@ import JogadoraPerfil from "../pages/JogadoraPerfil";
 import ErrorBoundary from "../components/ErrorBoundary";
 import Cadastrar from "../pages/CriarConta";
 
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -105,20 +104,16 @@ export const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: (
-          <ErrorBoundary>
-            <Login />
-          </ErrorBoundary>
-        ),
+        element: null,
       },
       {
         path: "CriarConta",
         element: (
           <ErrorBoundary>
             <Cadastrar />
-          </ErrorBoundary>          
-        )
-      }
+          </ErrorBoundary>
+        ),
+      },
     ],
   },
 ]);
