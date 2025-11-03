@@ -91,13 +91,13 @@ export default function Header() {
 
               {isCopaDropdownOpen && (
                 <div className="absolute top-full mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-2 z-20">
-                  <Link
-                    to="/login"
-                    className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover: text-white"
-                    onClick={() => setIsCopaDropdownOpen(false)}
+                  <button
+                    
+                    className="block mx-auto px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover: text-white"
+                    onClick={handleInscrever}
                   >
                     INSCRIÇÕES
-                  </Link>
+                  </button>
                   <Link
                     to="/copinha/jogos"
                     className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover: text-white"
@@ -211,16 +211,13 @@ export default function Header() {
               </button>
               {copinhaOpen && (
                 <div className="space-y-2 mt-2">
-                  <Link
-                    to="/copinha"
+                  <button
+                    
                     className="block hover:text-purple-400"
-                    onClick={() => {
-                      setCopinhaOpen(false);
-                      setIsOpen(false);
-                    }}
+                    onClick={handleInscrever}
                   >
                     INSCRIÇÕES
-                  </Link>
+                  </button>
                   <Link
                     to="/copinha/jogos"
                     className="block hover:text-purple-400"
