@@ -103,10 +103,6 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "login",
-        element: null,
-      },
-      {
         path: "CriarConta",
         element: (
           <ErrorBoundary>

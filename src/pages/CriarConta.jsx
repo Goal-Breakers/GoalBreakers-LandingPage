@@ -1,61 +1,82 @@
-import { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function Cadastrar () {
+export default function Cadastrar() {
   const { Cadastrar } = useAuth();
   const navigate = useNavigate();
-  const [nomeCompleto, setNomeCompleto] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [ddd, setDdd] = useState('');
-  const [telefone, setTelefone] = useState('');
-  const [email, setEmail] = useState('');
-  const [nomeUsuario, setNomeUsuario] = useState('');
-  const [senha, setSenha] = useState('');
-  const [error, setError] = useState('');
+  const [nomeCompleto, setNomeCompleto] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [ddd, setDdd] = useState("");
+  const [telefone, setTelefone] = useState("");
+  const [email, setEmail] = useState("");
+  const [nomeUsuario, setNomeUsuario] = useState("");
+  const [senha, setSenha] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!nomeCompleto.trim() || !cpf.trim() || !ddd.trim() || !telefone.trim() || !email.trim() || !nomeUsuario.trim() || !senha.trim()) {
-      setError('Por favor, preencha todos os campos.');
+    if (
+      !nomeCompleto.trim() ||
+      !cpf.trim() ||
+      !ddd.trim() ||
+      !telefone.trim() ||
+      !email.trim() ||
+      !nomeUsuario.trim() ||
+      !senha.trim()
+    ) {
+      setError("Por favor, preencha todos os campos.");
       return;
     }
-    if (!ddd.includes('+')) {
-      console.log('Código de país deve incluir +');
-      setError('Código de país inválido.');
+    if (!ddd.includes("+")) {
+      console.log("Código de país deve incluir +");
+      setError("Código de país inválido.");
       return;
     }
-    const phoneDigits = telefone.replace(/\s/g, '');
+    const phoneDigits = telefone.replace(/\s/g, "");
     if (phoneDigits.length !== 11 || isNaN(phoneDigits)) {
-      console.log('Número de telefone deve ter exatamente 11 dígitos.');
-      setError('Número de telefone inválido.');
+      console.log("Número de telefone deve ter exatamente 11 dígitos.");
+      setError("Número de telefone inválido.");
       return;
     }
-    console.log('Email entered:', email);
-    if (!email.includes('@')) {
-      console.log('Email deve conter @.');
-      setError('Email inválido.');
+    console.log("Email entered:", email);
+    if (!email.includes("@")) {
+      console.log("Email deve conter @.");
+      setError("Email inválido.");
       return;
     }
-    const success = Cadastrar({ nomeCompleto, cpf, ddd, telefone, email, nomeUsuario, senha });
+    const success = Cadastrar({
+      nomeCompleto,
+      cpf,
+      ddd,
+      telefone,
+      email,
+      nomeUsuario,
+      senha,
+    });
     if (success) {
-      setError('');
-      alert('Conta criada com sucesso!');
-      navigate('/');
+      setError("");
+      alert("Conta criada com sucesso!");
+      navigate("/");
     } else {
-      setError('Erro ao criar conta. Tente novamente.');
+      setError("Nome de usuário já existe. Escolha outro.");
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-black text-white">
-      <form onSubmit={handleSubmit} className="bg-black/70 p-8 rounded-lg shadow-lg w-full max-w-md">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-black/70 p-8 rounded-lg shadow-lg w-full max-w-md"
+      >
         <h2 className="text-3xl font-bold mb-6 text-center">Criar Conta</h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
 
         <div className="mb-4">
-          <label htmlFor="nomeCompleto" className="block mb-1 font-semibold">Nome Completo</label>
+          <label htmlFor="nomeCompleto" className="block mb-1 font-semibold">
+            Nome Completo
+          </label>
           <input
             id="nomeCompleto"
             type="text"
@@ -67,7 +88,9 @@ export default function Cadastrar () {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="cpf" className="block mb-1 font-semibold">CPF ou RG</label>
+          <label htmlFor="cpf" className="block mb-1 font-semibold">
+            CPF ou RG
+          </label>
           <input
             id="cpf"
             type="text"
@@ -81,7 +104,9 @@ export default function Cadastrar () {
         <div className="mb-4">
           <div className="flex space-x-2">
             <div className="w-20">
-              <label htmlFor="ddd" className="block mb-1 font-semibold">Código</label>
+              <label htmlFor="ddd" className="block mb-1 font-semibold">
+                Código
+              </label>
               <input
                 id="ddd"
                 type="text"
@@ -93,7 +118,9 @@ export default function Cadastrar () {
               />
             </div>
             <div className="flex-1">
-              <label htmlFor="telefone" className="block mb-1 font-semibold">Número de Telefone</label>
+              <label htmlFor="telefone" className="block mb-1 font-semibold">
+                Número de Telefone
+              </label>
               <input
                 id="telefone"
                 type="number"
@@ -107,7 +134,9 @@ export default function Cadastrar () {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="email" className="block mb-1 font-semibold">Endereço de E-mail</label>
+          <label htmlFor="email" className="block mb-1 font-semibold">
+            Endereço de E-mail
+          </label>
           <input
             id="email"
             type="text"
@@ -119,7 +148,9 @@ export default function Cadastrar () {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="nomeUsuario" className="block mb-1 font-semibold">Nome de Usuário</label>
+          <label htmlFor="nomeUsuario" className="block mb-1 font-semibold">
+            Nome de Usuário
+          </label>
           <input
             id="nomeUsuario"
             type="text"
@@ -131,7 +162,9 @@ export default function Cadastrar () {
         </div>
 
         <div className="mb-6">
-          <label htmlFor="senha" className="block mb-1 font-semibold">Senha</label>
+          <label htmlFor="senha" className="block mb-1 font-semibold">
+            Senha
+          </label>
           <input
             id="senha"
             type="password"
@@ -149,9 +182,12 @@ export default function Cadastrar () {
           Criar Conta
         </button>
 
-        <p className='pt-6'>Já tem uma conta?</p>
-        <Link to="/Login"><strong><p>Login</p></strong></Link> 
-
+        <p className="pt-6">Já tem uma conta?</p>
+        <Link to="/Login">
+          <strong>
+            <p>Login</p>
+          </strong>
+        </Link>
       </form>
     </div>
   );

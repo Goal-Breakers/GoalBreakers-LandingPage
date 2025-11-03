@@ -16,8 +16,32 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
+  const getUsers = () => {
+    const users = localStorage.getItem("registeredUsers");
+    return users ? JSON.parse(users) : [];
+  };
+
+  const saveUsers = (users) => {
+    localStorage.setItem("registeredUsers", JSON.stringify(users));
+  };
+
   const login = (username, password) => {
-    // Mock authentication
+    // Check registered users first
+    const users = getUsers();
+    const foundUser = users.find(
+      (user) => user.nomeUsuario === username && user.senha === password
+    );
+    if (foundUser) {
+      const userData = {
+        username: foundUser.nomeUsuario,
+        role: "user",
+        ...foundUser,
+      };
+      setUser(userData);
+      localStorage.setItem("authUser", JSON.stringify(userData));
+      return true;
+    }
+    // Fallback to mock authentication
     if (username === "admin" && password === "admin") {
       const userData = { username: "admin", role: "admin" };
       setUser(userData);
@@ -38,7 +62,14 @@ export const AuthProvider = ({ children }) => {
   };
 
   const Cadastrar = (userData) => {
-    // Mock account creation - always succeed for now
+    const users = getUsers();
+    // Check if username is already taken
+    if (users.some((user) => user.nomeUsuario === userData.nomeUsuario)) {
+      return false; // Username already exists
+    }
+    // Add new user
+    users.push(userData);
+    saveUsers(users);
     console.log("User registered:", userData);
     return true;
   };
