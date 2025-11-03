@@ -30,6 +30,20 @@ Nossa aplicação foi desenvolvida utilizando tecnologias modernas e práticas d
   - Cadastro de novos usuários
   - Login/Logout
   - Rotas protegidas para áreas restritas
+  - **Contas de Teste:**
+
+    ```
+    Admin (Acesso Total):
+    Email: admin
+    Senha: admin
+
+    Usuário Normal:
+    Email: user
+    Senha: user
+    ```
+
+    - Conta Admin: Permite gerenciar jogos, times e resultados da copa
+    - Conta User: Acesso às funcionalidades padrão do usuário
 - **Banco de Talentos:**
   - Perfis detalhados de jogadoras
   - Sistema de busca e filtros
